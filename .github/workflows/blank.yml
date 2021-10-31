@@ -33,12 +33,10 @@ jobs:
       - name: Zip
         working-directory: ConsoleApp
         run: zip -qq -r ${{env.release_title}}.zip Production
-      - name: Ls
-        working-directory: ConsoleApp
-        run: ls
+
       - name: Upload Release
-        uses: ncipollo/release-action@v1
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{env.release_title}}
-          bodyfile: ConsoleApp/${{env.release_title}}.zip
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: ConsoleApp/${{env.release_title}}.zip
