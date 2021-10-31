@@ -40,4 +40,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{env.release_title}}
           bodyfile: ConsoleApp\${{env.release_title}}.zip
