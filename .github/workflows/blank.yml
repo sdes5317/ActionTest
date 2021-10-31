@@ -33,9 +33,11 @@ jobs:
       - name: Zip
         working-directory: ConsoleApp
         run: zip -qq -r ${{env.release_title}}.zip Production
+      - name: Ls
+        working-directory: ConsoleApp
+        run: ls
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{env.release_title}}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
           bodyfile: ConsoleApp\${{env.release_title}}.zip
