@@ -13,6 +13,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  env:
+    release_title: ${{github.event.head_commit.message}}
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -25,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo ${{github.event.head_commit.message}}
+        run: echo ${{env.release_title}}
 
       - name: Install zip package
         uses: montudor/action-zip@v1
