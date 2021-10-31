@@ -32,7 +32,7 @@ jobs:
         uses: montudor/action-zip@v1
       - name: Zip
         working-directory: ConsoleApp
-        run: zip -qq -r v*.zip Production
+        run: zip -qq -r ${{env.release_title}}.zip Production
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
