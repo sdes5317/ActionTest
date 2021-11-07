@@ -26,14 +26,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Get the version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//} >> $GITHUB_PATH
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          echo ${{env.PATH}}
+          echo ${{env.VERSION}}
 
       - name: Install zip package
         uses: montudor/action-zip@v1
