@@ -30,15 +30,15 @@ jobs:
         run: |
           echo ${GITHUB_REF}
           echo "TAG=${GITHUB_REF/refs\/tags\/}" >> GITHUB_ENV
-          echo set-output name=TAG2=${GITHUB_REF/refs\/tags\/}
+          echo ::set-output name=TAG2::${GITHUB_REF/refs\/tags\/}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          echo ${env.TAG}
-          echo ${steps.get_version.outputs.TAG2}
+          echo ${{env.TAG}}
+          echo ${{steps.get_version.outputs.TAG2}}
 
       - name: Install zip package
         uses: montudor/action-zip@v1
