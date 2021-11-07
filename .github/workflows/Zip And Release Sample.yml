@@ -27,8 +27,8 @@ jobs:
     steps:
       - name: Get the version
         run: |
-          echo "${GITHUB_REF/refs\/tags\/}" >> GITHUB_TAG
-          echo "TAG2=${GITHUB_REF/refs\/tags\/}" >> GITHUB_ENV
+          echo ::"${GITHUB_REF/refs\/tags\/}" >> GITHUB_TAG
+          echo ::"TAG2=${GITHUB_REF/refs\/tags\/}" >> GITHUB_ENV
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
