@@ -36,8 +36,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          echo ${{env.TAG}}
-          echo ${{env.TAG2}}
+          echo ${env.TAG}
+          echo ${env.TAG2}
 
       - name: Install zip package
         uses: montudor/action-zip@v1
