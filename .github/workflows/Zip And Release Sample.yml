@@ -7,6 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [master]
+    tags:
+      - v*
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,7 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     # 自訂的變數:取得最後一筆commit訊息
     env:
-      release_title: ${{github.event.head_commit.message}}
+      # 使用該次push commit最後一條訊息
+      # release_title: ${{github.event.head_commit.message}}
+      release_title: ${{github.ref}}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
