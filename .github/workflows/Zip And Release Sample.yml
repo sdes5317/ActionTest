@@ -26,7 +26,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Get the version
-        run: echo "${GITHUB_REF/refs\/tags\/}" >> GITHUB_TAG
+        run: |
+          echo "${GITHUB_REF/refs\/tags\/}" >> GITHUB_TAG
+          echo "TAG2=${GITHUB_REF/refs\/tags\/}" >> GITHUB_ENV
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
@@ -34,6 +36,7 @@ jobs:
       - name: Run a one-line script
         run: |
           echo ${{env.TAG}}
+          echo ${{env.TAG2}}
 
       - name: Install zip package
         uses: montudor/action-zip@v1
