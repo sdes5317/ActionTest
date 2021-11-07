@@ -27,6 +27,7 @@ jobs:
     steps:
       - name: Get the version
         id: get_version
+        # 這裡有兩種設定變數的方法
         run: |
           echo ${GITHUB_REF}
           echo "TAG=${GITHUB_REF/refs\/tags\/}" >> $GITHUB_ENV
@@ -44,12 +45,12 @@ jobs:
         uses: montudor/action-zip@v1
       - name: Zip
         working-directory: ConsoleApp
-        run: zip -qq -r ${{env.release_title}}.zip Production
+        run: zip -qq -r ${{env.TAG}}.zip Production
 
       - name: Upload Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{env.release_title}}
+          automatic_release_tag: ${{env.TAG}}
           prerelease: false
-          files: ConsoleApp/${{env.release_title}}.zip
+          files: ConsoleApp/${{env.TAG}}.zip
